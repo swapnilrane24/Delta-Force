@@ -1,0 +1,85 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+namespace Curio.Gameplay
+{
+    public static class NameMaker
+    {
+        private static string[] names = new string[] { "Aidyn",
+"Akuji",
+"Akuma",
+"Alistair",
+"Alucard",
+"Arc",
+"Ash",
+"Banjo",
+"Cave",
+"Cloud",
+"Crash",
+"Cyrax",
+"Dante",
+"Daxter",
+"Ding",
+"Duke",
+"Ermac",
+"Ezio",
+"Falco",
+"Fox",
+"Genji",
+"Godot",
+"Goemon",
+"Goku",
+"Goro",
+"Hanzo",
+"Hiro",
+"Ico",
+"Ike",
+"Iori",
+"Jago",
+"Jak",
+"Jax",
+"Jedah",
+"Jojo",
+"Kage",
+"Kain",
+"Kane",
+"Kanji",
+"Kazooie",
+"Kialos",
+"Kirby",
+"Klonoa",
+"Link",
+"Luigi",
+"Majora",
+"Maximo",
+"Munch",
+"Neo",
+"Nero",
+"Niko",
+"Oro",
+"Parappa",
+"Phoenix",
+"Rad",
+"Raiden",
+"Ridley",
+"Rufus",
+"Rygar",
+"Ryu",
+"Spyro",
+"Squall",
+"Tidus",
+"Toan",
+"Trevor",
+"Vyse",
+"Wolf",
+"Yoshi",
+"Zell",
+"Zidan"};
+
+        public static string GetName()
+        {
+            return names[Random.Range(0, names.Length)];
+        }
+    }
+}
