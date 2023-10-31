@@ -420,12 +420,12 @@ TextureImporter:
     buildTarget: WebGL
     maxTextureSize: 2048
     resizeAlgorithm: 0
-    textureFormat: -1
+    textureFormat: 4
     textureCompression: 0
-    compressionQuality: 50
+    compressionQuality: 0
     crunchedCompression: 0
     allowsAlphaSplitting: 0
-    overridden: 0
+    overridden: 1
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -1679,10 +1679,10 @@ TextureImporter:
       FeelDuckSmoke_41: -3513129484872029128
       FeelDuckSmoke_35: -8237656247504995078
       FeelDuckSmoke_44: 571800556104604513
-      FeelDuckSmoke_39: -187933835039995366
       FeelDuckSmoke_17: -8759170264611092390
-      FeelDuckSmoke_27: 6499297482333762980
       FeelDuckSmoke_38: -2847260186865400224
+      FeelDuckSmoke_27: 6499297482333762980
+      FeelDuckSmoke_39: -187933835039995366
       FeelDuckSmoke_22: -923104468600845067
       FeelDuckSmoke_10: -7848167484925607332
       FeelDuckSmoke_14: 7046414905678590848

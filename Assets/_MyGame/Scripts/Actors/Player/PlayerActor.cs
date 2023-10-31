@@ -190,37 +190,26 @@ namespace Curio.Gameplay
 
         public override void RespawnActor()
         {
-            if (GameAdsManager.Instance.RewardAdReady())
+            //if (GameAdsManager.Instance.RewardAdReady())
+            //{
+                
+
+            respawnFeedback.PlayFeedbacks();
+            shieldFx.SetActive(true);
+            isAlive = true;
+            healthScript.SetHealth(health);
+            gameObject.SetActive(true);
+            playerCharacterController.SetPosition(_teamManager.GetRandomSpawnPoint());
+            healthFillBar.SetFillvalue(1);
+            SetShieldStatus(true);
+            currentWeapon.ResetWeapon();
+            SetGunInfo();
+            reloadinIndicator.SetActive(false);
+
+            GameAdsManager.Instance.ShowNormalAd(() =>
             {
-                GameAdsManager.Instance.ShowNormalAd(() =>
-                {
-                    respawnFeedback.PlayFeedbacks();
-                    shieldFx.SetActive(true);
-                    isAlive = true;
-                    healthScript.SetHealth(health);
-                    gameObject.SetActive(true);
-                    playerCharacterController.SetPosition(_teamManager.GetRandomSpawnPoint());
-                    healthFillBar.SetFillvalue(1);
-                    SetShieldStatus(true);
-                    currentWeapon.ResetWeapon();
-                    SetGunInfo();
-                    reloadinIndicator.SetActive(false);
-                });
-            }
-            else
-            {
-                respawnFeedback.PlayFeedbacks();
-                shieldFx.SetActive(true);
-                isAlive = true;
-                healthScript.SetHealth(health);
-                gameObject.SetActive(true);
-                playerCharacterController.SetPosition(_teamManager.GetRandomSpawnPoint());
-                healthFillBar.SetFillvalue(1);
-                SetShieldStatus(true);
-                currentWeapon.ResetWeapon();
-                SetGunInfo();
-                reloadinIndicator.SetActive(false);
-            }
+                Debug.Log("Normal Ads");
+            });
         }
 
         public override void DeathMatchTimeUp()

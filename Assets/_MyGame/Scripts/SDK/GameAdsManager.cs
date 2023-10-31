@@ -5,6 +5,7 @@ using System;
 using TMPro;
 using DG.Tweening;
 using Curio.Gameplay;
+using GamePix;
 
 public class GameAdsManager : MonoBehaviour
 {
@@ -22,11 +23,6 @@ public class GameAdsManager : MonoBehaviour
     #region Private Variables
     private Action<bool> rewardCallback = null;
     private Action interstitialCallback = null;
-    private bool rewardSuccess = false;
-
-    private float _delayInterstitial;
-    private bool rewardAdsReady, rewardAdsShown;
-    private bool shownNormalAds;
     #endregion
 
     #region Getters & Setters
@@ -45,38 +41,6 @@ public class GameAdsManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
-    private void Start()
-    {
-        GameDistribution.OnResumeGame += OnResumeGame;
-        GameDistribution.OnPauseGame += OnPauseGame;
-        GameDistribution.OnPreloadRewardedVideo += OnPreloadRewardedVideo;
-        GameDistribution.OnRewardedVideoSuccess += OnRewardedVideoSuccess;
-        GameDistribution.OnRewardedVideoFailure += OnRewardedVideoFailure;
-        GameDistribution.OnRewardGame += OnRewardGame;
-
-        _delayInterstitial = interstitialInterval;
-
-        GameDistribution.Instance.ShowAd();
-        //GameDistribution.Instance.PreloadRewardedAd();
-    }
-
-    //private void Update()
-    //{
-    //    if (showAds)
-    //    {
-    //        if (_delayInterstitial > 0f)
-    //        {
-    //            _delayInterstitial -= Time.deltaTime;
-
-    //            if (_delayInterstitial <= 0)
-    //            {
-    //                //GameDistribution.Instance.ShowAd();
-    //                _delayInterstitial = interstitialInterval;
-    //            }
-    //        }
-    //    }
-    //}
     #endregion
 
 
@@ -85,21 +49,12 @@ public class GameAdsManager : MonoBehaviour
     {
         Time.timeScale = 1;
         SoundManager.Instance.FinishedAdsUnpauseAudio();
-        //if (PlayerPrefs.GetInt("Sound") == 1)
-        //    AudioListener.volume = 1;
-
-        if (shownNormalAds)
-        {
-            shownNormalAds = false;
-            interstitialCallback();
-        }
     }
 
     public void OnPauseGame()
     {
         Time.timeScale = 0;
         SoundManager.Instance.ShowingAdsPauseAudio();
-        //AudioListener.volume = 0;
     }
 
     private void NoAdsPopUp()
@@ -114,87 +69,37 @@ public class GameAdsManager : MonoBehaviour
     #endregion
 
     #region Public Methods
-    public void OnPreloadRewardedVideo(int loaded)
-    {
-        // Feedback about preloading ad after called GameDistribution.Instance.PreloadRewardedAd
-        // 0: SDK couldn't preload ad
-        // 1: SDK preloaded ad
-
-        rewardAdsReady = loaded == 0 ? false : true;
-    }
-
-    public void PreloadRewardedAd()
-    {
-        GameDistribution.Instance.PreloadRewardedAd();
-    }
-
-    public bool RewardAdReady()
-    {
-        //#if UNITY_EDITOR
-        //return true;
-        //#else
-        //
-        PreloadRewardedAd();
-        //if(!rewardAdsReady)
-        //   NoAdsPopUp();
-        return rewardAdsReady;
-        //#endif
-    }
-
     public void ShowRewardedAds(Action<bool> action)
     {
-        GameDistribution.Instance.ShowRewardedAd();
         rewardCallback = action;
+        Gpx.Ads.RewardAd(OnRewardedVideoSuccess, OnRewardedVideoFailure);
     }
 
     public void ShowNormalAd(Action callback)
     {
-        //if (_delayInterstitial <= 0)
-        //{
-            //Time.timeScale = 0;
-            //AudioListener.volume = 0;
-            shownNormalAds = true;
-            GameDistribution.Instance.ShowAd();
-            interstitialCallback = callback;
-            _delayInterstitial = interstitialInterval;
-        //}
-        //else
-        //{
-            //callback();
-        //}
+        interstitialCallback = callback;
+        Gpx.Ads.InterstitialAd(InterstitialAd);
+    }
+
+    private void InterstitialAd()
+    {
+        interstitialCallback();
+        OnResumeGame();
     }
 
     public void OnRewardedVideoSuccess()
     {
-        rewardAdsShown = true;
-        Time.timeScale = 1;
-
-        if (PlayerPrefs.GetInt("Sound") == 1)
-            AudioListener.volume = 1;
-
-        //rewardCallback(true);
+        rewardCallback(true);
+        OnResumeGame();
     }
 
     public void OnRewardedVideoFailure()
     {
         NoAdsPopUp();
-
-        rewardAdsShown = false;
-        Time.timeScale = 1;
-
-        if (PlayerPrefs.GetInt("Sound") == 1)
-            AudioListener.volume = 1;
-
         rewardCallback(false);
-
-        //GameDistribution.Instance.PreloadRewardedAd();
+        OnResumeGame();
     }
 
-    public void OnRewardGame()
-    {
-        // REWARD PLAYER HERE
-        rewardCallback(true);
-    }
     #endregion
 
     public bool InternetAvailable()

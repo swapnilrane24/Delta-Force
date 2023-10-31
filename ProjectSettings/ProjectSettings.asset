@@ -47,7 +47,7 @@ PlayerSettings:
   defaultScreenWidthWeb: 1280
   defaultScreenHeightWeb: 720
   m_StereoRenderingPath: 0
-  m_ActiveColorSpace: 1
+  m_ActiveColorSpace: 0
   m_MTRendering: 1
   mipStripping: 0
   numberOfMipsStripped: 0
@@ -83,9 +83,9 @@ PlayerSettings:
   Force IOS Speakers When Recording: 0
   deferSystemGesturesMode: 0
   hideHomeButton: 0
-  submitAnalytics: 1
+  submitAnalytics: 0
   usePlayerLog: 1
-  bakeCollisionMeshes: 0
+  bakeCollisionMeshes: 1
   forceSingleInstance: 0
   useFlipModelSwapchain: 1
   resizableWindow: 0
@@ -173,9 +173,9 @@ PlayerSettings:
   ForceSDCardPermission: 0
   CreateWallpaper: 0
   APKExpansionFiles: 0
-  keepLoadedShadersAlive: 0
+  keepLoadedShadersAlive: 1
   StripUnusedMeshComponents: 1
-  VertexChannelCompressionMask: 4054
+  VertexChannelCompressionMask: -1
   iPhoneSdkVersion: 988
   iOSTargetOSVersionString: 11.0
   tvOSSdkVersion: 0
@@ -424,7 +424,7 @@ PlayerSettings:
     m_Automatic: 1
   - m_BuildTarget: WebGLSupport
     m_APIs: 0b000000
-    m_Automatic: 0
+    m_Automatic: 1
   m_BuildTargetVRSettings:
   - m_BuildTarget: Standalone
     m_Enabled: 0
@@ -692,12 +692,15 @@ PlayerSettings:
   splashScreenBackgroundSourcePortrait: {fileID: 0}
   blurSplashScreenBackground: 1
   spritePackerPolicy: 
-  webGLMemorySize: 16
-  webGLExceptionSupport: 1
-  webGLNameFilesAsHashes: 1
-  webGLDataCaching: 1
-  webGLDebugSymbols: 0
-  webGLEmscriptenArgs: 
+  webGLMemorySize: 128
+  webGLExceptionSupport: 2
+  webGLNameFilesAsHashes: 0
+  webGLDataCaching: 0
+  webGLDebugSymbols: 1
+  webGLEmscriptenArgs: -Oz -s "EXPORTED_FUNCTIONS=['_gpxLoadTextureAsync','_gpxGetFreeSoundChannel','_gpxSetSoundVolume','_gpxPlaySound','_gpxStopSound','_gpxResumeSounds','_gpxGetSoundDuration']"
+    --profiling-funcs -s GL_PREINITIALIZED_CONTEXT=1 -s USE_WEBGL2=1 -s MIN_WEBGL_VERSION=1
+    -s MAX_WEBGL_VERSION=2 -s PRECISE_F32=0 -s ALLOW_MEMORY_GROWTH=1 -s TOTAL_MEMORY=134217728
+    -s FORCE_FILESYSTEM=1 -s "EXPORTED_RUNTIME_METHODS=['getMemory','stackTrace','addRunDependency','removeRunDependency','FS_createPath','FS_createDataFile','FS_createPreloadedFile','ccall','cwrap','callMain','dynCall','lengthBytesUTF8','stringToUTF8','UTF8ToString','UTF16ToString','Pointer_stringify']"
   webGLModulesDirectory: 
   webGLTemplate: APPLICATION:Minimal
   webGLAnalyzeBuildSize: 0
@@ -728,8 +731,10 @@ PlayerSettings:
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend: {}
-  il2cppCompilerConfiguration: {}
-  managedStrippingLevel: {}
+  il2cppCompilerConfiguration:
+    WebGL: 2
+  managedStrippingLevel:
+    WebGL: 3
   incrementalIl2cppBuild: {}
   suppressCommonWarnings: 1
   allowUnsafeCode: 0
