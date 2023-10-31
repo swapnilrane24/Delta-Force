@@ -34,6 +34,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 7406093ac535e44e5b10f5370c396218, type: 3}
   magazineOutFx: {fileID: 8300000, guid: 6242085cff88b4f6f9b8105fd18f5a07, type: 3}
   magazineInFx: {fileID: 8300000, guid: 1de78d8b6daea427799e7c29433c2f5c, type: 3}
+  unlockCost: 12000
   weaponUpgrades:
   - upgradeCost: 0
     availableByAds: 0
@@ -43,7 +44,7 @@ MonoBehaviour:
     magazineSizeIncrease: 0
   - upgradeCost: 4500
     availableByAds: 0
-    damageIncrease: 16
+    damageIncrease: 2
     reloadingTimeReduce: 0
     fireRateIncrement: 0
     magazineSizeIncrease: 0
@@ -55,19 +56,19 @@ MonoBehaviour:
     magazineSizeIncrease: 10
   - upgradeCost: 5500
     availableByAds: 0
-    damageIncrease: 10
+    damageIncrease: 2
     reloadingTimeReduce: 0.1
     fireRateIncrement: 0
     magazineSizeIncrease: 0
   - upgradeCost: 6000
     availableByAds: 0
-    damageIncrease: 5
+    damageIncrease: 2
     reloadingTimeReduce: 0
     fireRateIncrement: 0
     magazineSizeIncrease: 10
   - upgradeCost: 6500
     availableByAds: 0
-    damageIncrease: 14
+    damageIncrease: 3
     reloadingTimeReduce: 0.1
     fireRateIncrement: 0
     magazineSizeIncrease: 5

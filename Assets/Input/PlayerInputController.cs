@@ -42,12 +42,15 @@ namespace Curio.Gameplay
 
         private void Update()
         {
-            inputs.moveVector = movement;
-            inputs.lookVector = look;
+            if (GameManager.Instance.GameState == GameState.PLAYING)
+            {
+                inputs.moveVector = movement;
+                inputs.lookVector = look;
 
-            inputs.fire = fire;
+                inputs.fire = fire;
 
-            character.SetInputs(inputs);
+                character.SetInputs(inputs);
+            }
         }
 
     }

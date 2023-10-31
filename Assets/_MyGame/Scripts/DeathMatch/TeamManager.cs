@@ -32,7 +32,8 @@ namespace Curio.Gameplay
 
         private void OnDisable()
         {
-            DeathMatchManager.Instance.onDeathMatchFinishEvent.RemoveListener(DeathMatchFinishListner);
+            //DeathMatchManager.Instance.onDeathMatchFinishEvent.RemoveListener(DeathMatchFinishListner);
+            GameManager.Instance.onLevelCompleteEvent.RemoveListener(DeathMatchFinishListner);
         }
 
         public void SetActorsPrefabs(PlayerActor playerPrefab, EnemyActor botPrefab)
@@ -79,7 +80,8 @@ namespace Curio.Gameplay
                 }
             }
 
-            DeathMatchManager.Instance.onDeathMatchFinishEvent.AddListener(DeathMatchFinishListner);
+            //DeathMatchManager.Instance.onDeathMatchFinishEvent.AddListener(DeathMatchFinishListner);
+            GameManager.Instance.onLevelCompleteEvent.AddListener(DeathMatchFinishListner);
         }
 
         private void Update()

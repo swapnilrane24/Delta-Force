@@ -6,7 +6,7 @@ using MoreMountains.Feedbacks;
 
 namespace Curio.Gameplay
 {
-    public abstract class Actor : MonoBehaviour// , IActor
+    public abstract class Actor : IActor
     {
         [SerializeField] protected SoundPlay soundPlay;
         [SerializeField] protected int health;
@@ -31,11 +31,14 @@ namespace Curio.Gameplay
         [SerializeField] protected int _teamID;
 
         public WeaponController SelectedWeapon => currentWeapon;
-        public UnityEvent<Actor> onDeadEvent;
+        //public UnityEvent<Actor> onDeadEvent;
 
-        public int TeamID => _teamID;
+        public UnityEvent<IActor> onDeadEvent;
+        public override UnityEvent<IActor> OnDeadEvent => onDeadEvent;
 
-        public Transform ActorTransfrom => transform;
+        public override int TeamID => _teamID;
+
+        public override Transform ActorTransfrom => transform;
 
         public bool CanPickUpHealth => healthScript.canPickUpHealth;
         protected bool isAlive = true;
@@ -45,10 +48,12 @@ namespace Curio.Gameplay
         protected bool isPlayer;
 
         private float currentCoundDownTimer;
-        public bool IsPlayer => isPlayer;
-        public bool IsAlive => isAlive;
+        public override bool IsPlayer => isPlayer;
+        public override bool IsAlive => isAlive;
 
-        public string ActorName => actorName;
+        public override string ActorName => actorName;
+
+        //
 
         private void OnDisable()
         {
@@ -152,7 +157,7 @@ namespace Curio.Gameplay
             anim.SetFloat(ySpeedAnimKey, direction.y);
         }
 
-        public virtual void Damage(ProjectileData projectileData)
+        public override void Damage(ProjectileData projectileData)
         {
             if (projectileData.attackerActor.IsAlive)
             {
@@ -238,5 +243,9 @@ namespace Curio.Gameplay
 
         }
 
+        public override void Damage(int value)
+        {
+            
+        }
     }
 }

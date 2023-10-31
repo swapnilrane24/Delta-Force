@@ -38,9 +38,6 @@ namespace Curio.Gameplay
             currentIdleTime = idleTime;
 
             aiController.StopMovement();
-
-            //aiController.EnemyActor.SetActorWalkAnim(false);
-            //aiController.EnemyActor.SetActorDirectionAnim(Vector2.zero);
         }
 
         public override void StateExit()

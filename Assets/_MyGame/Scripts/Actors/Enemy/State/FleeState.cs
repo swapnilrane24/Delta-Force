@@ -22,27 +22,29 @@ namespace Curio.Gameplay
 
         public override void StateEnter()
         {
-            currentWaitBeforeAiSwitchState = Time.time + 3f;
-            aiController.StartMovement();
-            if (aiController.Target)
-            {
-                //aiController.AIPathControl.CalculateFleePath(aiController.Target.transform.position);
-                //if (TryGetFleePosition(aiController.Target.transform.position, out fleeDestination))
-                //{
-                //    //aiController.NavMeshAgent.SetDestination(fleeDestination);
-                //    aiController.AIPathControl.SetDestination(fleeDestination);
-                //    aiController.EnemyActor.SetActorWalkAnim(true);
-                //    aiController.EnemyActor.SetActorDirectionAnim(Vector2.up);
-                //}
-                //else
-                //{
-                //    stateMachine.SwitchToNextState(StateEnum.IDLE);
-                //}
-            }
-            else
-            {
-                stateMachine.SwitchToNextState(StateEnum.IDLE);
-            }
+            stateMachine.SwitchToNextState(StateEnum.IDLE);
+
+            //currentWaitBeforeAiSwitchState = Time.time + 3f;
+            //aiController.StartMovement();
+            //if (aiController.Target)
+            //{
+            //    //aiController.AIPathControl.CalculateFleePath(aiController.Target.transform.position);
+            //    //if (TryGetFleePosition(aiController.Target.transform.position, out fleeDestination))
+            //    //{
+            //    //    //aiController.NavMeshAgent.SetDestination(fleeDestination);
+            //    //    aiController.AIPathControl.SetDestination(fleeDestination);
+            //    //    aiController.EnemyActor.SetActorWalkAnim(true);
+            //    //    aiController.EnemyActor.SetActorDirectionAnim(Vector2.up);
+            //    //}
+            //    //else
+            //    //{
+            //    //    stateMachine.SwitchToNextState(StateEnum.IDLE);
+            //    //}
+            //}
+            //else
+            //{
+            //    stateMachine.SwitchToNextState(StateEnum.IDLE);
+            //}
         }
 
         public override void StateExit()
@@ -52,14 +54,14 @@ namespace Curio.Gameplay
 
         public override void Tick()
         {
-            if (currentWaitBeforeAiSwitchState < Time.time)
-            {
-                if (aiController.NavMeshAgent.remainingDistance <= 1f || aiController.Target == null)
-                //if(aiController.ReachedDistination() || aiController.Target == null)
-                {
-                    stateMachine.SwitchToNextState(StateEnum.IDLE);
-                }
-            }
+            //if (currentWaitBeforeAiSwitchState < Time.time)
+            //{
+            //    if (aiController.NavMeshAgent.remainingDistance <= 1f || aiController.Target == null)
+            //    //if(aiController.ReachedDistination() || aiController.Target == null)
+            //    {
+            //        stateMachine.SwitchToNextState(StateEnum.IDLE);
+            //    }
+            //}
         }
 
         public bool TryGetFleePosition(Vector3 threatPosition, out Vector3 fleePosition)

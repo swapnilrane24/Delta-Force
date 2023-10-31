@@ -1,0 +1,74 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 735b322168d5c4412a06836ad75755b0, type: 3}
+  m_Name: E_WeaponConfig5_SMG_BD
+  m_EditorClassIdentifier: 
+  weaponFireType: 0
+  weaponIcon: {fileID: 21300000, guid: 7fb2dee5423f9498fb88212da248f6fd, type: 3}
+  unlockedByDefault: 0
+  weaponId: 2
+  weaponName: AK Rifle
+  projectile: {fileID: 2448495526357004182, guid: c966b2e2f564b4546b6638866ebf0913, type: 3}
+  projectileSpeed: 45
+  gunRange: 5
+  gunAccuracy: 70
+  bulletsPerShot: 1
+  isInfiniteAmmo: 0
+  magazineSize: 30
+  consumeSingleBulletPerShot: 1
+  reloadTime: 3.5
+  autoReload: 1
+  weaponAnimController: {fileID: 22100000, guid: f81fd2ab338ac40af82b8752afbe6a31, type: 2}
+  fireRate: 7
+  damage: 10
+  fireSfx:
+  - {fileID: 8300000, guid: 7a569c562a64c4d1eb8e09f90385a1b3, type: 3}
+  magazineOutFx: {fileID: 8300000, guid: 7885873388c3749f0aa2607201a67066, type: 3}
+  magazineInFx: {fileID: 8300000, guid: 0d14510e4ba004bd79109f4e2116e59d, type: 3}
+  unlockCost: 0
+  weaponUpgrades:
+  - upgradeCost: 0
+    availableByAds: 0
+    damageIncrease: 0
+    reloadingTimeReduce: 0
+    fireRateIncrement: 0
+    magazineSizeIncrease: 0
+  - upgradeCost: 4500
+    availableByAds: 0
+    damageIncrease: 16
+    reloadingTimeReduce: 0
+    fireRateIncrement: 0
+    magazineSizeIncrease: 0
+  - upgradeCost: 5000
+    availableByAds: 0
+    damageIncrease: 0
+    reloadingTimeReduce: 0.1
+    fireRateIncrement: 0
+    magazineSizeIncrease: 10
+  - upgradeCost: 5500
+    availableByAds: 0
+    damageIncrease: 10
+    reloadingTimeReduce: 0.1
+    fireRateIncrement: 0
+    magazineSizeIncrease: 0
+  - upgradeCost: 6000
+    availableByAds: 0
+    damageIncrease: 5
+    reloadingTimeReduce: 0
+    fireRateIncrement: 0
+    magazineSizeIncrease: 10
+  - upgradeCost: 6500
+    availableByAds: 0
+    damageIncrease: 14
+    reloadingTimeReduce: 0.1
+    fireRateIncrement: 0
+    magazineSizeIncrease: 5

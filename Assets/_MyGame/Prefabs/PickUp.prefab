@@ -34996,7 +34996,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  coinAmount: 1
+  coinAmount: 25
 --- !u!198 &6140888493924220123
 ParticleSystem:
   m_ObjectHideFlags: 0
@@ -44740,6 +44740,7 @@ MonoBehaviour:
   - {fileID: 7124953777382584227}
   - {fileID: 403062618114983360}
   - {fileID: 4704632288246546033}
+  weaponDropIndex: 0
 --- !u!135 &5204693290535179208
 SphereCollider:
   m_ObjectHideFlags: 0

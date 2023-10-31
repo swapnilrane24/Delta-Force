@@ -15,24 +15,37 @@ namespace Curio.Gameplay
         COMPLETE
     }
 
+    public enum GameMode
+    {
+        DEFENSE,
+        DEATHMATCH
+    }
+
     public class GameManager : MonoBehaviour
     {
         private static GameManager instance;
         public static GameManager Instance => instance;
 
         private GameState gameState = GameState.NONE;
+        private GameMode gameMode = GameMode.DEFENSE;
 
         public GameState GameState => gameState;
+        public GameMode GameMode { get { return gameMode; } set { gameMode = value; } }
 
         //[SerializeField] private int totalLevels;
         [SerializeField] private IntVariable totalMoney;
         [Range(0.1f, 5f)]
         public float mouseSensitivity = 1;
+        [Range(0.1f, 1f)]
+        private float soundVolume = 1;
+
+        public float GetSoundVolumn => soundVolume;
 
         private int roundEarning;
 
         public UnityEvent onLevelCompleteEvent;
-        public UnityEvent onDeathMatchStartEvent;
+        public UnityEvent onLevelStartEvent;
+        public UnityEvent<float> soundVolumnUpdateEvent;
 
         [HideInInspector] public UnityEvent roundEarningIncreaseEvent;
         public int RoundEarning => roundEarning;
@@ -56,14 +69,20 @@ namespace Curio.Gameplay
             totalMoney.Value = ES3.Load<int>("TotalMoney", 0);
         }
 
-        public void DeathMatchStarted()
+        public void UpdateSoundValumn(float value)
+        {
+            soundVolume = value;
+            soundVolumnUpdateEvent?.Invoke(value);
+        }
+
+        public void LevelStarted()
         {
             roundEarning = 0;
             gameState = GameState.PLAYING;
-            onDeathMatchStartEvent?.Invoke();
+            onLevelStartEvent?.Invoke();
         }
 
-        public void DeathMatchFinish()
+        public void LevelFinish()
         {
             gameState = GameState.COMPLETE;
             onLevelCompleteEvent?.Invoke();

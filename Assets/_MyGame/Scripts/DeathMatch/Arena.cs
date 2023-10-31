@@ -31,7 +31,7 @@ namespace Curio.Gameplay
             virtualDollyCams[activeCameraIndex].ActivateDollyCamera();
             virtualDollyCams[activeCameraIndex].virtualCamReachedTrackEndEvent.AddListener(virtualCamReachedTrackEndEventListner);
 
-            GameManager.Instance.onDeathMatchStartEvent.AddListener(DisableAllCameras);
+            GameManager.Instance.onLevelStartEvent.AddListener(DisableAllCameras);
         }
 
         public void InitializeArena()
@@ -42,7 +42,7 @@ namespace Curio.Gameplay
         private void OnDisable()
         {
             NavMesh.RemoveAllNavMeshData();
-            GameManager.Instance.onDeathMatchStartEvent.RemoveListener(DisableAllCameras);
+            GameManager.Instance.onLevelStartEvent.RemoveListener(DisableAllCameras);
         }
 
         private void SwitchCamera()

@@ -13,6 +13,7 @@ namespace Curio.Gameplay
         public string mapName;
         public Sprite mapIcon;
         public int arenaIndex;
+        public int levelToUnlock;
     }
 
     public class MapButton : MonoBehaviour
@@ -21,6 +22,7 @@ namespace Curio.Gameplay
         [SerializeField] private TextMeshProUGUI mapNameText;
         [SerializeField] private Image mapIconImage;
         [SerializeField] private Image selectedImage;
+        [SerializeField] private GameObject lockHolder;
 
         public UnityEvent<int> onButtonSelected;
 
@@ -32,6 +34,12 @@ namespace Curio.Gameplay
             mapNameText.text = mapButtonData.mapName;
             mapIconImage.sprite = mapButtonData.mapIcon;
             mapButton.onClick.AddListener(MapButtonListner);
+            mapButton.interactable = (BaseDefenseManager.Instance.BaseDefenseLevel + 1) >= mapButtonData.levelToUnlock;
+            lockHolder.SetActive(!mapButton.interactable);
+            if (mapButton.interactable == false)
+            {
+                mapNameText.text = "Unlock Lvl " + mapButtonData.levelToUnlock;
+            }
         }
 
         private void MapButtonListner()

@@ -5,11 +5,15 @@ using MoreMountains.Feedbacks;
 using Micosmo.SensorToolkit;
 using UnityEngine.UI;
 using TMPro;
+using Cinemachine;
+using Micosmo.SensorToolkit.Example;
 
 namespace Curio.Gameplay
 {
     public class PlayerActor : Actor
     {
+        [SerializeField] private float deathMatchVirtualCameFov, defenseVirtualCameFov;
+        [SerializeField] private CinemachineVirtualCamera cinemachineVirtualCamera;
         [SerializeField] private Color blueTeamColor, redTeamColor;
         [SerializeField] private GameObject statsCanvas;
         [SerializeField] private MMF_Player respawnFeedback;
@@ -27,6 +31,8 @@ namespace Curio.Gameplay
 
         public override void InitializeActor(TeamManager teamManager, int teamID)
         {
+            cinemachineVirtualCamera.m_Lens.FieldOfView = deathMatchVirtualCameFov;
+
             isPlayer = true;
             selectedGunID = weaponData.SelectedWeaponID;
             base.InitializeActor(teamManager, teamID);
@@ -37,6 +43,43 @@ namespace Curio.Gameplay
             actorName = "You";
             actorNameUI.SetActorName("YOU");
             actorNameUI.SetTextColor(_teamID == 0 ? redTeamColor : blueTeamColor);
+
+            if (enemyDetection)
+            {
+                enemyDetection.Length = currentWeapon.AttackRange;
+                enemyDetection.OnDetected.AddListener(DetectedEnemy);
+                enemyDetection.OnLostDetection.AddListener(LostEnemy);
+            }
+        }
+
+        public void InitializePlayer_BD()
+        {
+            cinemachineVirtualCamera.m_Lens.FieldOfView = defenseVirtualCameFov;
+            isAlive = true;
+            isPlayer = true;
+            _teamID = 1;//enemy is 0, battery is 1
+            selectedGunID = weaponData.SelectedWeaponID;
+            weaponSwitch.SwitchWeapon(selectedGunID);
+            currentWeapon = weaponSwitch.SelectedGun;
+            currentWeapon.InitializeWeapon(_teamID, this);
+            currentWeapon.SetParentTransform(transform);
+            AddWeaponListners();
+
+            characterIK.SetIK(currentWeapon.LeftArmIk);
+            anim.runtimeAnimatorController = currentWeapon.WeaponConfig.WeaponAnimController;
+
+            SetGunInfo();
+
+            healthScript = new HealthScript();
+            healthScript.SetHealth(health);
+
+            playerCharacterController.InitializePlayerController(this);
+            healthFillBar.SetFillvalue(1);
+            healthScript.OnHealthRatioChangeEvent.AddListener(healthFillBar.SetFillvalue);
+            actorApperence.SelectApperence(1);//we know player is blue team
+            //actorName = "You";
+            actorNameUI.SetActorName("");
+            actorNameUI.SetTextColor(blueTeamColor);
 
             if (enemyDetection)
             {

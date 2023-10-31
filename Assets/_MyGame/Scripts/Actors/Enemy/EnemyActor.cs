@@ -8,13 +8,13 @@ namespace Curio.Gameplay
     public class EnemyActor : Actor
     {
         
-        [SerializeField] private Color blueTeamColor, redTeamColor;
-        [SerializeField] private PickUpDrop pickUpDrop; 
-        [SerializeField] private Enemy enemy;
-        [SerializeField] private ActorApperenceDecide actorApperence;
-        [SerializeField] private FillBarUI healthFillBar;
-        [SerializeField] private Target targetIndicator;
-        [SerializeField] private Outlinable outline;
+        [SerializeField] protected Color blueTeamColor, redTeamColor;
+        [SerializeField] protected PickUpDrop pickUpDrop; 
+        [SerializeField] protected Enemy enemy;
+        [SerializeField] protected ActorApperenceDecide actorApperence;
+        [SerializeField] protected FillBarUI healthFillBar;
+        [SerializeField] protected Target targetIndicator;
+        [SerializeField] protected Outlinable outline;
 
         public bool ShouldBackOff
         {
@@ -44,7 +44,7 @@ namespace Curio.Gameplay
             }
         }
 
-        private void Update()
+        protected virtual void Update()
         {
             if (isAlive)
             {

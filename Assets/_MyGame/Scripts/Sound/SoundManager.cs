@@ -19,7 +19,15 @@ namespace Curio.Gameplay
         public static SoundManager Instance { get => instance; }
 
         private bool soundOn;
-        public bool IsSoundOn => soundOn;
+        //public bool IsSoundOn => soundOn;
+
+        private void OnDisable()
+        {
+            GameManager.Instance.soundVolumnUpdateEvent.RemoveListener((float value) =>
+            {
+                AudioListener.volume = value;
+            });
+        }
 
         private void Awake()
         {
@@ -36,7 +44,8 @@ namespace Curio.Gameplay
 
         private void Start()
         {
-            soundOn = ES3.Load<bool>("GameSound", true);
+            //soundOn = ES3.Load<bool>("GameSound", true);
+            AudioListener.volume = ES3.Load<float>("SoundVolume", 1);
             deactiveSoundSourceList = new List<SoundSource>();
 
             for (int i = 0; i < 5; i++)
@@ -52,6 +61,11 @@ namespace Curio.Gameplay
                 musicSource.loop = true;
                 musicSource.Play();
             }
+
+            GameManager.Instance.soundVolumnUpdateEvent.AddListener((float value) =>
+            {
+                AudioListener.volume = value;
+            });
 
             //GameManager.Instance.onDeathMatchStartEvent.AddListener(() =>
             //{
@@ -70,14 +84,15 @@ namespace Curio.Gameplay
             //});
 
 
-            AudioListener.volume = soundOn == true ? 1 : 0;
+            //AudioListener.volume = soundOn == true ? 1 : 0;
 
             //SoundOn(true, true);
         }
 
         public void RecheckSoundAfterAd()
         {
-            AudioListener.volume = soundOn == true ? 1 : 0;
+            //AudioListener.volume = soundOn == true ? 1 : 0;
+            AudioListener.volume = GameManager.Instance.GetSoundVolumn;
         }
 
         public void ActivateAudio()

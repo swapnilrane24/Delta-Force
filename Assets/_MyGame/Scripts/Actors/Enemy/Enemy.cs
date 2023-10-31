@@ -24,18 +24,21 @@ namespace Curio.Gameplay
         [SerializeField] protected LOSSensor enemyDetectionSensor;
 
         protected float attackDistance;
-        protected Actor target;
+        //protected Actor target;
+        protected IActor target;
         protected EnemyActor enemyActor;
         private bool isInitialized;
         private Vector3 seekDestination;
         private bool isSeekingTarget;
+        private string currentTargetName;
 
         public int InvestigateFriendDeathProbability => investigateFriendDeathProbability;
         public int MinimumInvestigationDistanceFromObject => minimumInvestigationDistanceFromObject;
         public float AttackDistance => attackDistance;
         public NavMeshAgent NavMeshAgent => navMeshAgent;
         public WeaponController SelectedWeapon => enemyActor.SelectedWeapon;
-        public Actor Target { get => target; }
+        //public Actor Target { get => target; }
+        public IActor Target { get => target; }
         public float CurrentMoveSpeed => moveSpeed;
         public float ChaseRange => chaseRange;
         public EnemyActor EnemyActor => enemyActor;
@@ -86,7 +89,7 @@ namespace Curio.Gameplay
             //aIPathControl.SetSpeed(CurrentMoveSpeed);
         }
 
-        public void GotHit(Actor attackerActor)
+        public void GotHit(IActor attackerActor)
         {
             target = attackerActor;
             //SetDestination(attackerActor.ActorTransfrom.position);
@@ -138,14 +141,15 @@ namespace Curio.Gameplay
                 if (currentLookTargetInterval < Time.time)
                 {
                     currentLookTargetInterval = lookForTargetInterval + Time.time;
-                    Actor actor = enemyDetectionSensor.GetNearestComponent<Actor>();
+                    IActor actor = enemyDetectionSensor.GetNearestComponent<IActor>();
 
                     if (actor != null)
                     {
                         if (actor.TeamID != enemyActor.TeamID)
                         {
                             target = actor;
-                            target.onDeadEvent.AddListener(OnTargetDeadListner);
+                            //target.onDeadEvent.AddListener(OnTargetDeadListner);
+                            target.OnDeadEvent.AddListener(OnTargetDeadListner);
                         }
                     }
                 }
@@ -154,7 +158,8 @@ namespace Curio.Gameplay
             {
                 if (target.IsAlive == false)
                 {
-                    target.onDeadEvent.RemoveListener(OnTargetDeadListner);
+                    //target.onDeadEvent.RemoveListener(OnTargetDeadListner);
+                    target.OnDeadEvent.RemoveListener(OnTargetDeadListner);
                     target = null;
                 }
             }
@@ -186,6 +191,16 @@ namespace Curio.Gameplay
                         }
                     }
                 }
+            }
+        }
+
+        public void GetBatteryTarget()
+        {
+            if (BaseDefenseManager.Instance != null)
+            {
+                target = BaseDefenseManager.Instance.GetBattery;
+                if (target)
+                    target.OnDeadEvent.AddListener(OnTargetDeadListner);
             }
         }
 
@@ -227,11 +242,12 @@ namespace Curio.Gameplay
             navMeshAgent.speed = CurrentMoveSpeed;
         }
 
-        private void OnTargetDeadListner(Actor actor)
+        //private void OnTargetDeadListner(Actor actor)
+        private void OnTargetDeadListner(IActor actor)
         {
             if (target == actor)
             {
-                actor.onDeadEvent.RemoveListener(OnTargetDeadListner);
+                actor.OnDeadEvent.RemoveListener(OnTargetDeadListner);
                 target = null;
             }
         }
@@ -240,7 +256,7 @@ namespace Curio.Gameplay
         {
             if (value.TryGetComponent<Actor>(out Actor actor))
             {
-                if (target == actor)
+                if (target == (IActor)actor)
                 {
                     //OnTargetDeadListner(enemy);
                 }

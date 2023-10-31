@@ -7,6 +7,7 @@ namespace Curio.Gameplay
     public class AttackState : BaseState
     {
         #region Serialized Variables
+        [SerializeField] private bool doStrafeMovement = true;
         [Header("X is Left, Right movement, Y is Forward, Backward movement")]
         [SerializeField] private Vector2[] movementPatterns;
         [SerializeField] private float waitBeforeMovement = 3;
@@ -80,28 +81,31 @@ namespace Curio.Gameplay
                 stateMachine.SwitchToNextState(StateEnum.IDLE);
             }
 
-            if (currentWaitTime > 0)
+            if (doStrafeMovement)
             {
-                currentWaitTime -= Time.deltaTime;
-                if (currentWaitTime <= 0)
+                if (currentWaitTime > 0)
                 {
-                    currentMoveTime = moveTime;
-                    currentPatternIndex = Random.Range(0, movementPatterns.Length);
-                    currentPattern = movementPatterns[currentPatternIndex % movementPatterns.Length];
-                }
-            }
-            else
-            {
-                if (currentMoveTime > 0)
-                {
-                    currentMoveTime -= Time.deltaTime;
-                    PlayCurrentPattern();
-                    if (currentMoveTime <= 0)
+                    currentWaitTime -= Time.deltaTime;
+                    if (currentWaitTime <= 0)
                     {
                         currentMoveTime = moveTime;
                         currentPatternIndex = Random.Range(0, movementPatterns.Length);
                         currentPattern = movementPatterns[currentPatternIndex % movementPatterns.Length];
-                        //PlayCurrentPattern();
+                    }
+                }
+                else
+                {
+                    if (currentMoveTime > 0)
+                    {
+                        currentMoveTime -= Time.deltaTime;
+                        PlayCurrentPattern();
+                        if (currentMoveTime <= 0)
+                        {
+                            currentMoveTime = moveTime;
+                            currentPatternIndex = Random.Range(0, movementPatterns.Length);
+                            currentPattern = movementPatterns[currentPatternIndex % movementPatterns.Length];
+                            //PlayCurrentPattern();
+                        }
                     }
                 }
             }

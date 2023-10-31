@@ -78129,6 +78129,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c17d37d4988093f4bae1de2d7ea1651f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  doStrafeMovement: 1
   movementPatterns:
   - {x: 0.25, y: 0}
   - {x: 0, y: 0.25}
@@ -78281,6 +78282,8 @@ MonoBehaviour:
     pickUpType: {fileID: 11400000, guid: a4e25f8a9808d43b39d6099b0b4cbfe1, type: 2}
   - weight: 2
     pickUpType: {fileID: 11400000, guid: 99199026b86844c69954edbc15cf584a, type: 2}
+  - weight: 8
+    pickUpType: {fileID: 11400000, guid: 628b8cdce5d6c44dcb981e53bae3d0dd, type: 2}
 --- !u!114 &51082268227423833
 MonoBehaviour:
   m_ObjectHideFlags: 0

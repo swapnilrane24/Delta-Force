@@ -11,6 +11,7 @@ namespace Curio.Gameplay
         private static DeathMatchManager instance;
         public static DeathMatchManager Instance => instance;
 
+        [SerializeField] private Camera deathMatchCamera;
         [SerializeField] private int respawnTime;
         [SerializeField] private bool canSpawnPlayer = true;
         [SerializeField] private DamageNumber damageNumber;
@@ -23,7 +24,7 @@ namespace Curio.Gameplay
         [SerializeField] private EnemyActor botPrefab;
         
 
-        public UnityEvent onDeathMatchFinishEvent;
+        //public UnityEvent onDeathMatchFinishEvent;
 
         private RespawningMenu respawningMenu;
         private bool deathMatchTimeUp;
@@ -64,6 +65,7 @@ namespace Curio.Gameplay
 
         public void InitializeDeathMatchManager()
         {
+            deathMatchCamera.gameObject.SetActive(true);
             Arena arena = Instantiate(arenaPrefabs[arenaIndex]);
             if (arena)
             {
@@ -89,6 +91,7 @@ namespace Curio.Gameplay
 
         public void StartMatch()
         {
+            GameManager.Instance.GameMode = GameMode.DEATHMATCH;
             deathMatchTimeUp = false;
             currentDeathMatchTimer = deathMatchTimer * 60;
             redTeamManager.SetActorsPrefabs(playerPrefab, botPrefab);
@@ -112,7 +115,7 @@ namespace Curio.Gameplay
 
             gameUI.SetScore(redTeamManager.OpponentTeamScore, blueTeamManager.OpponentTeamScore);
 
-            GameManager.Instance.DeathMatchStarted();
+            GameManager.Instance.LevelStarted();
         }
 
         private void Update()
@@ -122,10 +125,11 @@ namespace Curio.Gameplay
                 currentDeathMatchTimer -= Time.deltaTime;
                 if (currentDeathMatchTimer <= 0)
                 {
-                    GameManager.Instance.DeathMatchFinish();
-                    onDeathMatchFinishEvent?.Invoke();
+                    GameManager.Instance.LevelFinish();
+                    //onDeathMatchFinishEvent?.Invoke();
                     matchResultUI.SetScore(redTeamManager.OpponentTeamScore, blueTeamManager.OpponentTeamScore);
-                    matchResultUI.ToggleVisibility(true);
+                    //matchResultUI.ToggleVisibility(true);
+                    matchResultUI.ActivatePanel();
                 }
 
                 gameUI.SetTimer(currentDeathMatchTimer);

@@ -20,7 +20,7 @@ namespace Curio.Gameplay
         public int damage = 5;
 
         protected int _teamID;
-        protected Actor _actor;
+        protected IActor _actor;
         protected bool isProjectileAlive;
         protected float _path = 0;
         protected float actualSpeed;
@@ -58,7 +58,9 @@ namespace Curio.Gameplay
             bool canDamage = false;
             hitEnvironment = true;
 
-            if (other.TryGetComponent<Actor>(out Actor actor))
+            IActor actor = null;
+
+            if (other.TryGetComponent<IActor>(out actor))
             {
                 hitEnvironment = false;
                 if (actor.TeamID != _teamID)
@@ -72,7 +74,8 @@ namespace Curio.Gameplay
                 ProjectileData projectileData = new ProjectileData();
                 projectileData.damage = damage;
                 projectileData.attackerActor = _actor;
-                other.SendMessage("Damage", projectileData, SendMessageOptions.DontRequireReceiver);
+                actor.Damage(projectileData);
+                //other.SendMessage("Damage", projectileData, SendMessageOptions.DontRequireReceiver);
                 if (_actor.IsPlayer)
                 {
                     DeathMatchManager.Instance.GetDamageNumber().Spawn(transform.position, damage);
@@ -92,7 +95,7 @@ namespace Curio.Gameplay
 
         }
 
-        public virtual void InitializeProjectile(int damageVal, float speed, float range, int teamID, Actor actor)
+        public virtual void InitializeProjectile(int damageVal, float speed, float range, int teamID, IActor actor)
         {
             _teamID = teamID;
             distance = range;

@@ -43,7 +43,7 @@ MonoBehaviour:
     magazineSizeIncrease: 0
   - upgradeCost: 250
     availableByAds: 0
-    damageIncrease: 10
+    damageIncrease: 2
     reloadingTimeReduce: 0
     fireRateIncrement: 0
     magazineSizeIncrease: 0
@@ -55,13 +55,13 @@ MonoBehaviour:
     magazineSizeIncrease: 1
   - upgradeCost: 550
     availableByAds: 0
-    damageIncrease: 5
+    damageIncrease: 2
     reloadingTimeReduce: 0
     fireRateIncrement: 0
     magazineSizeIncrease: 2
   - upgradeCost: 700
     availableByAds: 0
-    damageIncrease: 2
+    damageIncrease: 1
     reloadingTimeReduce: 0.05
     fireRateIncrement: 0
     magazineSizeIncrease: 1
@@ -73,7 +73,7 @@ MonoBehaviour:
     magazineSizeIncrease: 4
   - upgradeCost: 1000
     availableByAds: 0
-    damageIncrease: 15
+    damageIncrease: 3
     reloadingTimeReduce: 0.05
     fireRateIncrement: 0
     magazineSizeIncrease: 4

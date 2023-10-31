@@ -10,13 +10,13 @@ namespace Curio.Gameplay
 
         private void OnDisable()
         {
-            GameManager.Instance.onDeathMatchStartEvent.RemoveListener(() => toggleLabel.ToggleVisibility(true));
+            GameManager.Instance.onLevelStartEvent.RemoveListener(() => toggleLabel.ToggleVisibility(true));
             GameManager.Instance.onLevelCompleteEvent.AddListener(() => toggleLabel.ToggleVisibility(false));
         }
 
         private void Start()
         {
-            GameManager.Instance.onDeathMatchStartEvent.AddListener(() => toggleLabel.ToggleVisibility(true));
+            GameManager.Instance.onLevelStartEvent.AddListener(() => toggleLabel.ToggleVisibility(true));
             GameManager.Instance.onLevelCompleteEvent.AddListener(() => toggleLabel.ToggleVisibility(false));
         }
     }

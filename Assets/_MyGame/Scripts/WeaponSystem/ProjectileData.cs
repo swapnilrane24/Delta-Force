@@ -7,6 +7,6 @@ namespace Curio.Gameplay
     public class ProjectileData
     {
         public int damage;
-        public Actor attackerActor;
+        public IActor attackerActor;
     }
 }

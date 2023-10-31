@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: WeaponConfig1_UZI
   m_EditorClassIdentifier: 
   weaponFireType: 0
-  weaponIcon: {fileID: 21300000, guid: 395a3dd143df54f9e8ea4b2f31c3c71a, type: 3}
+  weaponIcon: {fileID: 21300000, guid: 7fb2dee5423f9498fb88212da248f6fd, type: 3}
   unlockedByDefault: 0
   weaponId: 1
   weaponName: UZI
@@ -34,6 +34,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: b9c601364fda24a5d89580328438ccbf, type: 3}
   magazineOutFx: {fileID: 8300000, guid: 7885873388c3749f0aa2607201a67066, type: 3}
   magazineInFx: {fileID: 8300000, guid: 0d14510e4ba004bd79109f4e2116e59d, type: 3}
+  unlockCost: 500
   weaponUpgrades:
   - upgradeCost: 0
     availableByAds: 0
@@ -43,7 +44,7 @@ MonoBehaviour:
     magazineSizeIncrease: 0
   - upgradeCost: 1100
     availableByAds: 0
-    damageIncrease: 10
+    damageIncrease: 2
     reloadingTimeReduce: 0
     fireRateIncrement: 0
     magazineSizeIncrease: 0
@@ -55,7 +56,7 @@ MonoBehaviour:
     magazineSizeIncrease: 10
   - upgradeCost: 1700
     availableByAds: 0
-    damageIncrease: 5
+    damageIncrease: 2
     reloadingTimeReduce: 0
     fireRateIncrement: 0
     magazineSizeIncrease: 5
@@ -67,7 +68,7 @@ MonoBehaviour:
     magazineSizeIncrease: 5
   - upgradeCost: 2300
     availableByAds: 0
-    damageIncrease: 15
+    damageIncrease: 3
     reloadingTimeReduce: 0
     fireRateIncrement: 0
     magazineSizeIncrease: 0

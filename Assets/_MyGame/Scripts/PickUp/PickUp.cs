@@ -13,7 +13,7 @@ namespace Curio.Gameplay
 
         private ObjectPoolGeneric<PickUp> _objectPoolGeneric;
 
-        private int weaponDropIndex;
+        [SerializeField] private int weaponDropIndex;
         public int WeaponDropIndex { set => weaponDropIndex = value; get => weaponDropIndex; }
 
         bool isPickedUp;

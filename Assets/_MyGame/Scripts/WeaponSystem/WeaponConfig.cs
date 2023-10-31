@@ -36,11 +36,12 @@ namespace Curio.Gameplay
         [SerializeField] private AudioClip[] fireSfx;
         [SerializeField] private AudioClip magazineOutFx, magazineInFx;
 
+        [SerializeField] private int unlockCost;
         [SerializeField] private WeaponUpgradeConfig[] weaponUpgrades;
 
         private int upgradeCount = 0;//since the 1st element on Upgade data array is zero
         private bool unlocked;
-        private bool availableToUnlock;
+        private bool availableToUnlock = true;
 
         public WeaponFireType WeaponFireType => weaponFireType;
         public Sprite WeaponIcon => weaponIcon;
@@ -55,6 +56,7 @@ namespace Curio.Gameplay
         public bool   AutoReload => autoReload;
         public int    Damage => currentDamage;
         public int    UpgradeCount => upgradeCount;
+        public int    UnlockCost => unlockCost;
         public bool   Unlocked => unlocked;
         public bool   AvailableToUnlock => availableToUnlock;
         public Projectile Projectile => projectile;
@@ -89,15 +91,15 @@ namespace Curio.Gameplay
 
         public void SaveWeaponAvailableToUnlock()
         {
-            string saveName = "AvailableToUnlock_" + weaponName;
-            availableToUnlock = true;
-            ES3.Save<bool>(saveName, true);
+            //string saveName = "AvailableToUnlock_" + weaponName;
+            //availableToUnlock = true;
+            //ES3.Save<bool>(saveName, true);
         }
 
         public void LoadWeaponAvailableToUnlock()
         {
-            string saveName = "AvailableToUnlock_" + weaponName;
-            availableToUnlock = ES3.Load<bool>(saveName, false);
+            //string saveName = "AvailableToUnlock_" + weaponName;
+            //availableToUnlock = ES3.Load<bool>(saveName, false);
         }
 
         public void SaveUpgradeCount(int count)

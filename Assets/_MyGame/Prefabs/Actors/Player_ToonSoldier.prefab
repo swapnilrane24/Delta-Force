@@ -25655,7 +25655,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 308}
+  m_AnchoredPosition: {x: 0, y: 150}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2288685990469436824
@@ -25679,7 +25679,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -25811,6 +25811,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  deathMatchVirtualCameFov: 50
+  defenseVirtualCameFov: 50
+  cinemachineVirtualCamera: {fileID: 2288685991387503482}
   blueTeamColor: {r: 0, g: 0.84967804, b: 1, a: 1}
   redTeamColor: {r: 1, g: 0.21226418, b: 0.21226418, a: 1}
   statsCanvas: {fileID: 2288685989509325098}
@@ -25852,7 +25855,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dcab98a25945744178bd3af249308bdd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mouseSentivity: 0.25
   shootFeedback: {fileID: 1863283293097123052}
   _characterMotor: {fileID: 2288685991027191133}
   _maxStableMoveSpeed: 7.5
@@ -68226,8 +68228,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41fe4f057085941aea0c931b88083555, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isPlayer: 1
   redTeamMat: {fileID: 2100000, guid: b599c004b71afff4d9318c349bbb7d53, type: 2}
   blueTeamMat: {fileID: 2100000, guid: c2c258a5c8a13e240a1f598657d70330, type: 2}
+  randomMatList: []
   backpack: {fileID: 3494087827530813525}
   actorAperenceList:
   - body: {fileID: 6340566393482202932}

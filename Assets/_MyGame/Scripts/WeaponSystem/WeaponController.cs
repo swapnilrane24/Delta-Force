@@ -45,7 +45,8 @@ namespace Curio.Gameplay
         public Vector3 TargetDirection { get => targetDirection; set => targetDirection = value; }
         public float AttackRange => weaponConfig.gunRange;
 
-        private Actor _actor;
+        //private Actor _actor;
+        private IActor _actor;
         private ObjectPoolGeneric<Projectile> projectilePool;
         private int actualDamage;
 
@@ -54,7 +55,7 @@ namespace Curio.Gameplay
             _parentTransform = parentTransform;
         }
 
-        public void InitializeWeapon(int teamID, Actor actor)
+        public void InitializeWeapon(int teamID, IActor actor)
         {
             _actor = actor;
             _teamID = teamID;

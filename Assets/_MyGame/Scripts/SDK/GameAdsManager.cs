@@ -142,6 +142,7 @@ public class GameAdsManager : MonoBehaviour
             midAdCallback = callback;
             SetAudioTime(0);
             CrazyAds.Instance.beginAdBreak(MidAdSuccess, MidAdfailed);
+            _delayInterstitial = interstitialInterval;
         }
         else
         {

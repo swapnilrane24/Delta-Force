@@ -5,12 +5,16 @@ using UnityEngine.Events;
 
 namespace Curio.Gameplay
 {
-    public interface IActor
+    public abstract class IActor : MonoBehaviour
     {
-        int TeamID { get; }
-        void Damage(int value);
-        UnityEvent OnDeadEvent { get; }
-        Transform ActorTransfrom { get; }
+        public virtual int TeamID { get; }
+        public virtual void Damage(ProjectileData projectileData) { }
+        public virtual void Damage(int value) { }
+        public virtual UnityEvent<IActor> OnDeadEvent { get; }
+        public virtual Transform ActorTransfrom { get; }
+        public virtual bool IsAlive { get; }
+        public virtual bool IsPlayer { get; }
+        public virtual string ActorName { get; }
 
     }
 }

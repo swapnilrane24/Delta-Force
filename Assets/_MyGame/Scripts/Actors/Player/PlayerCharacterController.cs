@@ -37,7 +37,7 @@ namespace Curio.Gameplay
         public Vector3 _gravity = new Vector3(0, -30f, 0);
 
         private PlayerActor playerActor;
-        private Transform aimTarget;
+        //private Transform aimTarget;
 
         private Vector3 _moveInputVector;
         private Vector3 _lookInputVector;
@@ -57,16 +57,16 @@ namespace Curio.Gameplay
 
             Cursor.lockState = CursorLockMode.Locked;
             _characterMotor.CharacterController = this;
-            aimTarget = GameObject.CreatePrimitive(PrimitiveType.Sphere).transform;
-            aimTarget.localScale = Vector3.one * 0.5f;
-            aimTarget.GetComponent<Collider>().enabled = false;
+            //aimTarget = GameObject.CreatePrimitive(PrimitiveType.Sphere).transform;
+            //aimTarget.localScale = Vector3.one * 0.5f;
+            //aimTarget.GetComponent<Collider>().enabled = false;
 
             _cinemachineTargetYaw = transform.rotation.eulerAngles.y;
         }
 
         public void SetInputs(CharacterInputs inputs)
         {
-            if (playerActor.IsAlive == false) return;
+            if (playerActor.IsAlive == false || GameManager.Instance.GameState != GameState.PLAYING) return;
 
             forward = Camera.main.transform.forward.normalized;
             right = Camera.main.transform.right.normalized;

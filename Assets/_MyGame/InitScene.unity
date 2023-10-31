@@ -153,10 +153,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   totalMoney: {fileID: 11400000, guid: 8b5ae6ffb30a046f08794ad5bfbf3cb6, type: 2}
+  mouseSensitivity: 1
   onLevelCompleteEvent:
     m_PersistentCalls:
       m_Calls: []
-  onDeathMatchStartEvent:
+  onLevelStartEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  soundVolumnUpdateEvent:
     m_PersistentCalls:
       m_Calls: []
   roundEarningIncreaseEvent:
@@ -443,8 +447,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 40}
+  m_SizeDelta: {x: 0, y: -268.522}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &780840855
 MonoBehaviour:
@@ -466,7 +470,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 9e24e575a31434e329b00e0dbc516c95, type: 3}
+  m_Sprite: {fileID: 21300000, guid: be0910d3cbd4e4b1eb6a22731654bd37, type: 3}
   m_Type: 3
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -703,8 +707,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 40}
+  m_SizeDelta: {x: 0, y: -268.522}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1511678249
 MonoBehaviour:
@@ -726,7 +730,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 9e24e575a31434e329b00e0dbc516c95, type: 3}
+  m_Sprite: {fileID: 21300000, guid: be0910d3cbd4e4b1eb6a22731654bd37, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
