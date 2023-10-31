@@ -56,20 +56,20 @@ namespace Curio.Gameplay
 
         public void RewardButtonListner()
         {
-            GameAdsManager.Instance.ShowRewardedAds((bool canReward) =>
-            {
-                if (canReward)
-                {
-                    continueButton.interactable = false;
-                    rewardButton.interactable = false;
+            //GameAdsManager.Instance.ShowRewardedAds((bool canReward) =>
+            //{
+            //    if (canReward)
+            //    {
+            //        continueButton.interactable = false;
+            //        rewardButton.interactable = false;
 
-                    menuRoot.CoinCollectAnimUI.Coins_Animation(() =>
-                    {
-                        GameManager.Instance.AddMoney(GameManager.Instance.RoundEarning * 2);
-                        WaitExtension.Wait(this, 0.2f, () => GameManager.Instance.LoadLevel());
-                    });
-                }
-            });
+            //        menuRoot.CoinCollectAnimUI.Coins_Animation(() =>
+            //        {
+            //            GameManager.Instance.AddMoney(GameManager.Instance.RoundEarning * 2);
+            //            WaitExtension.Wait(this, 0.2f, () => GameManager.Instance.LoadLevel());
+            //        });
+            //    }
+            //});
 
             //menuRoot.CoinCollectAnimUI.Coins_Animation(() =>
             //{

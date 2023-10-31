@@ -42,30 +42,30 @@ namespace Curio.Gameplay
 
         protected virtual void AdButtonListner()
         {
-            GameAdsManager.Instance.ShowRewardedAds((bool canReward) =>
-            {
-                if (canReward)
-                {
-                    adButton.interactable = false;
-                    onRewardButtonClickedEvent?.Invoke();
+            //GameAdsManager.Instance.ShowRewardedAds((bool canReward) =>
+            //{
+            //    if (canReward)
+            //    {
+            //        adButton.interactable = false;
+            //        onRewardButtonClickedEvent?.Invoke();
 
-                    if (menuRoot)
-                    {
-                        menuRoot.CoinCollectAnimUI.Coins_Animation(() =>
-                        {
-                            RewardCallBack();
-                        });
-                    }
-                    else
-                    {
-                        RewardCallBack();
-                    }
+            //        if (menuRoot)
+            //        {
+            //            menuRoot.CoinCollectAnimUI.Coins_Animation(() =>
+            //            {
+            //                RewardCallBack();
+            //            });
+            //        }
+            //        else
+            //        {
+            //            RewardCallBack();
+            //        }
 
-                    //RewardCallBack();
-                    //adButton.interactable = false;
-                    //onRewardButtonClickedEvent?.Invoke();
-                }
-            });
+            //        //RewardCallBack();
+            //        //adButton.interactable = false;
+            //        //onRewardButtonClickedEvent?.Invoke();
+            //    }
+            //});
 
             //RewardCallBack();
         }

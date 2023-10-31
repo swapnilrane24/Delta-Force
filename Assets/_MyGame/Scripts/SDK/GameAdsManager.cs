@@ -44,39 +44,17 @@ public class GameAdsManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        GameMonetize.OnResumeGame += OnResumeGame;
+        GameMonetize.OnPauseGame += OnPauseGame;
     }
 
-    private void Start()
+    void OnDestroy()
     {
-        GameDistribution.OnResumeGame += OnResumeGame;
-        GameDistribution.OnPauseGame += OnPauseGame;
-        GameDistribution.OnPreloadRewardedVideo += OnPreloadRewardedVideo;
-        GameDistribution.OnRewardedVideoSuccess += OnRewardedVideoSuccess;
-        GameDistribution.OnRewardedVideoFailure += OnRewardedVideoFailure;
-        GameDistribution.OnRewardGame += OnRewardGame;
-
-        _delayInterstitial = interstitialInterval;
-
-        GameDistribution.Instance.ShowAd();
-        //GameDistribution.Instance.PreloadRewardedAd();
+        GameMonetize.OnResumeGame -= OnResumeGame;
+        GameMonetize.OnPauseGame -= OnPauseGame;
     }
 
-    //private void Update()
-    //{
-    //    if (showAds)
-    //    {
-    //        if (_delayInterstitial > 0f)
-    //        {
-    //            _delayInterstitial -= Time.deltaTime;
-
-    //            if (_delayInterstitial <= 0)
-    //            {
-    //                //GameDistribution.Instance.ShowAd();
-    //                _delayInterstitial = interstitialInterval;
-    //            }
-    //        }
-    //    }
-    //}
     #endregion
 
 
@@ -85,14 +63,12 @@ public class GameAdsManager : MonoBehaviour
     {
         Time.timeScale = 1;
         SoundManager.Instance.FinishedAdsUnpauseAudio();
-        //if (PlayerPrefs.GetInt("Sound") == 1)
-        //    AudioListener.volume = 1;
 
-        if (shownNormalAds)
-        {
-            shownNormalAds = false;
+        //if (shownNormalAds)
+        //{
+            //shownNormalAds = false;
             interstitialCallback();
-        }
+        //}
     }
 
     public void OnPauseGame()
@@ -114,87 +90,14 @@ public class GameAdsManager : MonoBehaviour
     #endregion
 
     #region Public Methods
-    public void OnPreloadRewardedVideo(int loaded)
-    {
-        // Feedback about preloading ad after called GameDistribution.Instance.PreloadRewardedAd
-        // 0: SDK couldn't preload ad
-        // 1: SDK preloaded ad
 
-        rewardAdsReady = loaded == 0 ? false : true;
-    }
-
-    public void PreloadRewardedAd()
-    {
-        GameDistribution.Instance.PreloadRewardedAd();
-    }
-
-    public bool RewardAdReady()
-    {
-        //#if UNITY_EDITOR
-        //return true;
-        //#else
-        //
-        PreloadRewardedAd();
-        //if(!rewardAdsReady)
-        //   NoAdsPopUp();
-        return rewardAdsReady;
-        //#endif
-    }
-
-    public void ShowRewardedAds(Action<bool> action)
-    {
-        GameDistribution.Instance.ShowRewardedAd();
-        rewardCallback = action;
-    }
 
     public void ShowNormalAd(Action callback)
     {
-        //if (_delayInterstitial <= 0)
-        //{
-            //Time.timeScale = 0;
-            //AudioListener.volume = 0;
-            shownNormalAds = true;
-            GameDistribution.Instance.ShowAd();
-            interstitialCallback = callback;
-            _delayInterstitial = interstitialInterval;
-        //}
-        //else
-        //{
-            //callback();
-        //}
+        interstitialCallback = callback;
+        GameMonetize.Instance.ShowAd();
     }
 
-    public void OnRewardedVideoSuccess()
-    {
-        rewardAdsShown = true;
-        Time.timeScale = 1;
-
-        if (PlayerPrefs.GetInt("Sound") == 1)
-            AudioListener.volume = 1;
-
-        //rewardCallback(true);
-    }
-
-    public void OnRewardedVideoFailure()
-    {
-        NoAdsPopUp();
-
-        rewardAdsShown = false;
-        Time.timeScale = 1;
-
-        if (PlayerPrefs.GetInt("Sound") == 1)
-            AudioListener.volume = 1;
-
-        rewardCallback(false);
-
-        //GameDistribution.Instance.PreloadRewardedAd();
-    }
-
-    public void OnRewardGame()
-    {
-        // REWARD PLAYER HERE
-        rewardCallback(true);
-    }
     #endregion
 
     public bool InternetAvailable()

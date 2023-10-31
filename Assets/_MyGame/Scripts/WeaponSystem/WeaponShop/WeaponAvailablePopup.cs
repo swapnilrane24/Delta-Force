@@ -48,19 +48,19 @@ namespace Curio.Gameplay
         private void AdButtonListner()
         {
             //Show ads
-            GameAdsManager.Instance.ShowRewardedAds((bool adsSuccess) =>
-            {
-                if (adsSuccess)
-                {
-                    adUnlockButton.interactable = false;
-                    noThanksButton.interactable = false;
+            //GameAdsManager.Instance.ShowRewardedAds((bool adsSuccess) =>
+            //{
+            //    if (adsSuccess)
+            //    {
+            //        adUnlockButton.interactable = false;
+            //        noThanksButton.interactable = false;
 
-                    _weaponData.SaveWeaponUnlocked();
+            //        _weaponData.SaveWeaponUnlocked();
 
-                }
+            //    }
 
-                WaitExtension.Wait(this, 0.5f, () => togglePanel.ToggleVisibility(false));
-            });
+            //    WaitExtension.Wait(this, 0.5f, () => togglePanel.ToggleVisibility(false));
+            //});
 
         }
 
