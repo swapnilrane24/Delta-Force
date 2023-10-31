@@ -2471,7 +2471,7 @@ MonoBehaviour:
   isGUISound: 1
   volumn: 1
   randomPitchPercent: 0
-  _clip: {fileID: 0}
+  _clip: {fileID: 8300000, guid: bbd48c38564344d459ab1399ea4a2201, type: 3}
 --- !u!1 &2432695786161927297
 GameObject:
   m_ObjectHideFlags: 0

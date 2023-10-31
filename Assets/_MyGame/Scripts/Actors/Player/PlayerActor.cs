@@ -190,7 +190,24 @@ namespace Curio.Gameplay
 
         public override void RespawnActor()
         {
-            GameAdsManager.Instance.ShowNormalAd(() =>
+            if (GameAdsManager.Instance.RewardAdReady())
+            {
+                GameAdsManager.Instance.ShowNormalAd(() =>
+                {
+                    respawnFeedback.PlayFeedbacks();
+                    shieldFx.SetActive(true);
+                    isAlive = true;
+                    healthScript.SetHealth(health);
+                    gameObject.SetActive(true);
+                    playerCharacterController.SetPosition(_teamManager.GetRandomSpawnPoint());
+                    healthFillBar.SetFillvalue(1);
+                    SetShieldStatus(true);
+                    currentWeapon.ResetWeapon();
+                    SetGunInfo();
+                    reloadinIndicator.SetActive(false);
+                });
+            }
+            else
             {
                 respawnFeedback.PlayFeedbacks();
                 shieldFx.SetActive(true);
@@ -203,7 +220,7 @@ namespace Curio.Gameplay
                 currentWeapon.ResetWeapon();
                 SetGunInfo();
                 reloadinIndicator.SetActive(false);
-            });
+            }
         }
 
         public override void DeathMatchTimeUp()

@@ -67,26 +67,7 @@ namespace Curio.Gameplay
                 AudioListener.volume = value;
             });
 
-            //GameManager.Instance.onDeathMatchStartEvent.AddListener(() =>
-            //{
-            //    if (mainMusic)
-            //    {
-            //        musicSource.Play();
-            //    }
-            //});
-
-            //GameManager.Instance.onLevelCompleteEvent.AddListener(() =>
-            //{
-            //    if (mainMusic)
-            //    {
-            //        musicSource.Stop();
-            //    }
-            //});
-
-
-            //AudioListener.volume = soundOn == true ? 1 : 0;
-
-            //SoundOn(true, true);
+            
         }
 
         public void RecheckSoundAfterAd()
@@ -164,8 +145,15 @@ namespace Curio.Gameplay
                 deactiveSoundSourceList.Add(soundSource);
         }
 
+        public void ShowingAdsPauseAudio()
+        {
+            AudioListener.volume = 0;
+        }
 
-
+        public void FinishedAdsUnpauseAudio()
+        {
+            AudioListener.volume = GameManager.Instance.GetSoundVolumn;
+        }
 
     }
 }
