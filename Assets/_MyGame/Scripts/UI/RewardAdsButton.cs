@@ -27,9 +27,20 @@ namespace Curio.Gameplay
             adButton.onClick.RemoveListener(AdButtonListner);
         }
 
-        private void Start()
+        private void OnEnable()
+        {
+            adButton.interactable = false;
+            GameAdsManager.Instance.CheckRewardAd();
+            SetInteractable(GameAdsManager.Instance.IsRewardAdReady);
+        }
+
+        private void Awake()
         {
             adButton = GetComponent<Button>();
+        }
+
+        private void Start()
+        {
             adButton.onClick.AddListener(AdButtonListner);
             rewardText.text = CurrencyToString.Convert(rewardAmount);
         }

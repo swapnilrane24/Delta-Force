@@ -4,7 +4,7 @@ using UnityEngine;
 using System;
 using TMPro;
 using DG.Tweening;
-using CrazyGames;
+using Curio.Gameplay;
 
 public class GameAdsManager : MonoBehaviour
 {
@@ -24,11 +24,13 @@ public class GameAdsManager : MonoBehaviour
     private bool rewardSuccess = false, midAdSuccess = false;
     private Action<bool> rewardCallback;
     private Action midAdCallback;
+    private bool isRewardAdReady;
     #endregion
 
     #region Getters & Setters
     public bool AdsDisabled => disableAds;
     public static GameAdsManager Instance { get => instance; }
+    public bool IsRewardAdReady => isRewardAdReady;
     #endregion
 
     #region Unity Methods
@@ -47,24 +49,48 @@ public class GameAdsManager : MonoBehaviour
         _delayInterstitial = interstitialInterval;
     }
 
-    private void Update()
+    private void Start()
     {
-        if (disableAds == false)
-        {
-            if (_delayInterstitial > 0)
-            {
-                _delayInterstitial -= Time.deltaTime;
-            }
-
-            if (startRVDelay > 0)
-            {
-                startRVDelay -= Time.deltaTime;
-            }
-        }
+        LaggedAPIUnity.OnResumeGame += OnResumeGame;
+        LaggedAPIUnity.OnPauseGame += OnPauseGame;
+        LaggedAPIUnity.onRewardAdReady += RewardAdReady;
+        LaggedAPIUnity.onRewardAdSuccess += RewardSuccess;
+        LaggedAPIUnity.onRewardAdFailure += Rewardfailed;
     }
+
+    //private void Update()
+    //{
+    //    if (disableAds == false)
+    //    {
+    //        if (_delayInterstitial > 0)
+    //        {
+    //            _delayInterstitial -= Time.deltaTime;
+    //        }
+
+    //        if (startRVDelay > 0)
+    //        {
+    //            startRVDelay -= Time.deltaTime;
+    //        }
+    //    }
+    //}
     #endregion
 
     #region Private Methods
+
+    public void OnResumeGame()
+    {
+        Time.timeScale = 1;
+        SoundManager.Instance.FinishedAdsUnpauseAudio();
+    }
+
+
+    public void OnPauseGame()
+    {
+        Time.timeScale = 0;
+        SoundManager.Instance.ShowingAdsPauseAudio();
+        //AudioListener.volume = 0;
+    }
+
     private void NoAdsPopUp()
     {
         noAdsText.transform.localScale = Vector3.zero;
@@ -73,7 +99,7 @@ public class GameAdsManager : MonoBehaviour
         noAdSequence.Append(noAdsText.transform.DOScale(Vector3.one, 0.2f));
         noAdSequence.AppendInterval(0.5f);
         noAdSequence.Append(noAdsText.transform.DOScale(Vector3.zero, 0.2f));
-        SetAudioTime(1);
+        OnResumeGame();
     }
 
     public void AdError()
@@ -86,30 +112,25 @@ public class GameAdsManager : MonoBehaviour
 
     }
 
-    private void SetAudioTime(float value)
-    {
-        AudioListener.volume = value;
-        Time.timeScale = value;
-    }
-
     private void RewardSuccess()
     {
-        SetAudioTime(1);
+        OnResumeGame();
         rewardSuccess = true;
         rewardCallback(rewardSuccess);
+        isRewardAdReady = false;
     }
 
     private void Rewardfailed()
     {
         NoAdsPopUp();
-        SetAudioTime(1);
         rewardSuccess = false;
         rewardCallback(rewardSuccess);
+        isRewardAdReady = false;
     }
 
     private void MidAdSuccess()
     {
-        SetAudioTime(1);
+        OnResumeGame();
         midAdSuccess = true;
         midAdCallback();
         _delayInterstitial = interstitialInterval;
@@ -118,7 +139,6 @@ public class GameAdsManager : MonoBehaviour
     private void MidAdfailed()
     {
         NoAdsPopUp();
-        SetAudioTime(1);
         midAdSuccess = false;
         midAdCallback();
         _delayInterstitial = 30;
@@ -126,28 +146,38 @@ public class GameAdsManager : MonoBehaviour
     #endregion
 
     #region Public Methods
+    public void RewardAdReady()
+    {
+        isRewardAdReady = true;
+    }
+
+    public void CheckRewardAd()
+    {
+        LaggedAPIUnity.Instance.CheckRewardAd();
+    }
+
     public bool ShowRewardedAds(Action<bool> callback)
     {
         rewardCallback = callback;
-        SetAudioTime(0);
+        OnPauseGame();
         rewardSuccess = false;
-        CrazyAds.Instance.beginAdBreakRewarded(RewardSuccess, Rewardfailed);
+        LaggedAPIUnity.Instance.PlayRewardAd();
         return rewardSuccess;
     }
 
     public void ShowNormalAd(Action callback)
     {
-        if (_delayInterstitial <= 0)
-        {
+        //if (_delayInterstitial <= 0)
+        //{
             midAdCallback = callback;
-            SetAudioTime(0);
-            CrazyAds.Instance.beginAdBreak(MidAdSuccess, MidAdfailed);
-            _delayInterstitial = interstitialInterval;
-        }
-        else
-        {
-            callback();
-        }
+            OnPauseGame();
+            LaggedAPIUnity.Instance.ShowAd();
+            //_delayInterstitial = interstitialInterval;
+        //}
+        //else
+        //{
+            //callback();
+        //}
     }
     #endregion
 

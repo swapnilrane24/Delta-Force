@@ -47,6 +47,9 @@ namespace Curio.Gameplay
             continueButton.interactable = false;
             rewardButton.interactable = false;
 
+            Time.timeScale = 1;
+            SoundManager.Instance.FinishedAdsUnpauseAudio();
+
             menuRoot.CoinCollectAnimUI.Coins_Animation(() =>
             {
                 GameManager.Instance.AddMoney(GameManager.Instance.RoundEarning);
@@ -82,10 +85,13 @@ namespace Curio.Gameplay
         public override void ActivatePanel()
         {
             base.ActivatePanel();
+            rewardButton.interactable = false;
             GameManager.Instance.IncreaseRoundEarning(200);
             rewardText.text = CurrencyToString.Convert(GameManager.Instance.RoundEarning);
             Cursor.lockState = CursorLockMode.None;
             menuRoot.TotalCurrencyUI.gameObject.SetActive(true);
+            GameAdsManager.Instance.CheckRewardAd();
+            rewardButton.interactable = GameAdsManager.Instance.IsRewardAdReady;
         }
 
     }

@@ -164,7 +164,15 @@ namespace Curio.Gameplay
                 deactiveSoundSourceList.Add(soundSource);
         }
 
+        public void ShowingAdsPauseAudio()
+        {
+            AudioListener.volume = 0;
+        }
 
+        public void FinishedAdsUnpauseAudio()
+        {
+            AudioListener.volume = GameManager.Instance.GetSoundVolumn;
+        }
 
 
     }
