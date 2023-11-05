@@ -7843,7 +7843,8 @@ MonoBehaviour:
   - {fileID: 1884078166327738847, guid: b8a7952072ff44845a9dc6d01c5572fc, type: 3}
   - {fileID: 3905079737080858883, guid: e7571234437a24c4583912158c69c703, type: 3}
   - {fileID: 1998411556276141008, guid: 51c071f366e1540b59a1a64e803e780a, type: 3}
-  deathMatchTimer: 5
+  deathMatchTimerInMin: 1
+  deathMatchTimerInSec: 20
   numberOfTeamMembers: 4
   playerPrefab: {fileID: 2288685991027191128, guid: 85e53cd65739945478ca3aa45131c166, type: 3}
   botPrefab: {fileID: 8605108725133383615, guid: 42b5cb27ee5844e71abc447c25032c34, type: 3}
@@ -8979,9 +8980,19 @@ MonoBehaviour:
   - {fileID: 11400000, guid: d513da1fa544a48579e7276ba9b430d4, type: 2}
   - {fileID: 11400000, guid: aa1a71804595a4ccba44d06eab8d45bf, type: 2}
   baseArenas:
-  - {fileID: 2488323322184972977, guid: 8e79e3145518849f29c83e829fa3171a, type: 3}
+  - {fileID: 6644708176799948263, guid: 9f32433fe5e60416394d727fcdd962e8, type: 3}
+  - {fileID: 6010589120376334883, guid: 1be00c724c8ac42deaf33348b4ee77bb, type: 3}
+  - {fileID: 1552785266741500711, guid: 569514b54d18c41538c68718f2c89383, type: 3}
+  - {fileID: 7990001040443606631, guid: 3a0d85d8347044906875e1f5618092e4, type: 3}
   - {fileID: 1838825219605380274, guid: f25b7428c6ff641459e7c912745eb3c7, type: 3}
+  - {fileID: 5781967356458227358, guid: f6eb05cc5129b47a795df2d0a7415e84, type: 3}
+  - {fileID: 1608461212158969082, guid: 4a1e70ed3f1814643a0d02dfc566e2ad, type: 3}
+  - {fileID: 6012634428590949903, guid: abf5f3427027c47dabc5caf80c26a0d2, type: 3}
+  - {fileID: 2459599178912170883, guid: 1f94bbc39e62a4a219fc51e97a0d6acb, type: 3}
   - {fileID: 1033980131353659560, guid: 80e94cccf56ee48bfb1a8fb24fdfe6c9, type: 3}
+  - {fileID: 527721806065516161, guid: 7bf2d6e740ab244259ba9aed53c996aa, type: 3}
+  - {fileID: 3721507302895545439, guid: 70afe9d0771f84dc58e581c45d1be3da, type: 3}
+  - {fileID: 2488323322184972977, guid: 8e79e3145518849f29c83e829fa3171a, type: 3}
   playerPrefab: {fileID: 2288685991027191128, guid: 85e53cd65739945478ca3aa45131c166, type: 3}
   botPrefab: {fileID: 3248111003062215680, guid: 881d7ec7c4f7f48fd8b6497231479a95, type: 3}
   availableEnemyActorList: []

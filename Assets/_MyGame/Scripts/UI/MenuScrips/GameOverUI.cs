@@ -32,10 +32,7 @@ namespace Curio.Gameplay
         {
             base.ActivatePanel();
             Cursor.lockState = CursorLockMode.None;
-            if (GameAdsManager.Instance.RewardAdReady())
-            {
-                GameAdsManager.Instance.ShowNormalAd(() => Debug.Log("Normal"));
-            }
+            GameAdsManager.Instance.ShowNormalAd(() => Debug.Log("Normal"));
         }
 
     }

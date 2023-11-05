@@ -18,7 +18,9 @@ namespace Curio.Gameplay
 
         [SerializeField] private Arena[] arenaPrefabs;
         [Tooltip("Time is in Minutes")]
-        [SerializeField] private int deathMatchTimer;
+        [SerializeField] private int deathMatchTimerInMin;
+        [Tooltip("Time is in Seconds")]
+        [SerializeField] private int deathMatchTimerInSec;
         [SerializeField] private int numberOfTeamMembers;
         [SerializeField] private PlayerActor playerPrefab;
         [SerializeField] private EnemyActor botPrefab;
@@ -93,7 +95,7 @@ namespace Curio.Gameplay
         {
             GameManager.Instance.GameMode = GameMode.DEATHMATCH;
             deathMatchTimeUp = false;
-            currentDeathMatchTimer = deathMatchTimer * 60;
+            currentDeathMatchTimer = deathMatchTimerInMin * 60 + deathMatchTimerInSec;
             redTeamManager.SetActorsPrefabs(playerPrefab, botPrefab);
             blueTeamManager.SetActorsPrefabs(playerPrefab, botPrefab);
 

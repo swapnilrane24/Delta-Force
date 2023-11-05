@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79c0840b6ae4949df94bce920aa8808e, type: 3}
   m_Name: Wave 8
   m_EditorClassIdentifier: 
+  batteryLifeMultiplier: 1.5
   waveDatas:
   - initialDelay: 6
     enemyCount: 5

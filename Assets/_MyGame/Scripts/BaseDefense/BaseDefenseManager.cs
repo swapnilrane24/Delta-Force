@@ -71,7 +71,7 @@ namespace Curio.Gameplay
             player.onDeadEvent.AddListener(LostBase);
             player.SetPosition(currentBaseArena.PlayerSpawnPoint.position);
 
-            currentBaseArena.InitializeArena();
+            currentBaseArena.InitializeArena(currentWave.batteryLifeMultiplier);
 
             totalEnemies = 0;
             for (int i = 0; i < currentWave.waveDatas.Length; i++)

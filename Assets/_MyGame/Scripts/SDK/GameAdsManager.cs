@@ -143,6 +143,7 @@ public class GameAdsManager : MonoBehaviour
 
     public void ShowRewardedAds(Action<bool> action)
     {
+        OnPauseGame();
         GameDistribution.Instance.ShowRewardedAd();
         rewardCallback = action;
     }
@@ -151,8 +152,9 @@ public class GameAdsManager : MonoBehaviour
     {
         //if (_delayInterstitial <= 0)
         //{
-            //Time.timeScale = 0;
-            //AudioListener.volume = 0;
+        //Time.timeScale = 0;
+        //AudioListener.volume = 0;
+        OnPauseGame();
             shownNormalAds = true;
             GameDistribution.Instance.ShowAd();
             interstitialCallback = callback;
@@ -167,10 +169,7 @@ public class GameAdsManager : MonoBehaviour
     public void OnRewardedVideoSuccess()
     {
         rewardAdsShown = true;
-        Time.timeScale = 1;
-
-        if (PlayerPrefs.GetInt("Sound") == 1)
-            AudioListener.volume = 1;
+        OnResumeGame();
 
         //rewardCallback(true);
     }
@@ -180,10 +179,7 @@ public class GameAdsManager : MonoBehaviour
         NoAdsPopUp();
 
         rewardAdsShown = false;
-        Time.timeScale = 1;
-
-        if (PlayerPrefs.GetInt("Sound") == 1)
-            AudioListener.volume = 1;
+        OnResumeGame();
 
         rewardCallback(false);
 
@@ -193,6 +189,7 @@ public class GameAdsManager : MonoBehaviour
     public void OnRewardGame()
     {
         // REWARD PLAYER HERE
+        OnResumeGame();
         rewardCallback(true);
     }
     #endregion
