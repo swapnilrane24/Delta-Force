@@ -63,6 +63,8 @@ namespace Curio.Gameplay
             rewardText.text = CurrencyToString.Convert(GameManager.Instance.RoundEarning);
             Cursor.lockState = CursorLockMode.None;
             menuRoot.TotalCurrencyUI.gameObject.SetActive(true);
+
+            GameAdsManager.Instance.ShowNormalAd(() => Debug.Log("Normal"));
         }
     }
 }

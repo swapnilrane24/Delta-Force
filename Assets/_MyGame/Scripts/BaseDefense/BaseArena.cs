@@ -35,7 +35,7 @@ namespace Curio.Gameplay
             NavMesh.RemoveAllNavMeshData();
         }
 
-        public void InitializeArena()
+        public void InitializeArena(float batteryHealthMultiplier)
         {
             instances[0] = NavMesh.AddNavMeshData(navMeshData);
 
@@ -47,7 +47,7 @@ namespace Curio.Gameplay
             {
                 batterySection[batterySectionIndex].batteries[i].gameObject.SetActive(true);
                 availableBatteries.Add(batterySection[batterySectionIndex].batteries[i]);
-                batterySection[batterySectionIndex].batteries[i].SetBaseArena(this);
+                batterySection[batterySectionIndex].batteries[i].InitializeBattery(batteryHealthMultiplier, this);
             }
 
             totalBattries = availableBatteries.Count;

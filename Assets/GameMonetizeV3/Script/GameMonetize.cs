@@ -67,7 +67,7 @@ public class GameMonetize : MonoBehaviour
         }
         catch (EntryPointNotFoundException e)
         {
-            Debug.LogWarning("Initialization failed. Make sure you are running a WebGL build in a browser");
+            Debug.LogWarning("Initialization failed. Make sure you are running a WebGL build in a browser:" + e.Message);
         }
     }
     
@@ -79,7 +79,7 @@ public class GameMonetize : MonoBehaviour
         }
         catch (EntryPointNotFoundException e)
         {
-            Debug.LogWarning("ShowBanner failed. Make sure you are running a WebGL build in a browser");
+            Debug.LogWarning("ShowBanner failed. Make sure you are running a WebGL build in a browser:" + e.Message);
         }
     }
 

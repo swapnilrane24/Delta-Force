@@ -190,8 +190,8 @@ namespace Curio.Gameplay
 
         public override void RespawnActor()
         {
-            GameAdsManager.Instance.ShowNormalAd(() =>
-            {
+            //GameAdsManager.Instance.ShowNormalAd(() =>
+            //{
                 respawnFeedback.PlayFeedbacks();
                 shieldFx.SetActive(true);
                 isAlive = true;
@@ -203,7 +203,7 @@ namespace Curio.Gameplay
                 currentWeapon.ResetWeapon();
                 SetGunInfo();
                 reloadinIndicator.SetActive(false);
-            });
+            //});
         }
 
         public override void DeathMatchTimeUp()

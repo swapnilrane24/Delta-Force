@@ -96,6 +96,7 @@ public class GameAdsManager : MonoBehaviour
     {
         interstitialCallback = callback;
         GameMonetize.Instance.ShowAd();
+        //callback();
     }
 
     #endregion

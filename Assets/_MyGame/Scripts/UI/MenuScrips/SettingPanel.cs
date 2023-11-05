@@ -19,7 +19,7 @@ namespace Curio.Gameplay
         protected override void Start()
         {
             base.Start();
-            GameManager.Instance.mouseSensitivity = ES3.Load<float>("MouseSensitivity", 0.4f);
+            GameManager.Instance.mouseSensitivity = ES3.Load<float>("MouseSensitivity", 0.15f);
             GameManager.Instance.UpdateSoundValumn(ES3.Load<float>("SoundVolume", 1f));
 
             // Initialize the slider's value with the default sensitivity

@@ -16,6 +16,13 @@ namespace Curio.Gameplay
         public void Coins_Animation()
         {
             soundPlay.Play();
+
+            for (int i = 0; i < coins.Length; i++)
+            {
+                coins[i].transform.localScale = Vector3.one;
+                coins[i].anchoredPosition = Vector3.zero;
+            }
+
             //play vibration
             for (int i = 0; i < coins.Length; i++)
             {

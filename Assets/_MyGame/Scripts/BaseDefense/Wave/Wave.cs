@@ -7,6 +7,7 @@ namespace Curio.Gameplay
     [CreateAssetMenu(fileName = "Wave", menuName = "Curio/Wave")]
     public class Wave : ScriptableObject
     {
+        public float batteryLifeMultiplier = 1f;
         public WaveData[] waveDatas;
     }
 }

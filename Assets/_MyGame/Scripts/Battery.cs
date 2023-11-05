@@ -35,18 +35,14 @@ namespace Curio.Gameplay
 
         private BaseArena _baseArena;
 
-        private void Start()
+        public void InitializeBattery(float healthMultiplier, BaseArena baseArena)
         {
+            _baseArena = baseArena;
             healthScript = new HealthScript();
-            healthScript.SetHealth(maxHealth);
+            healthScript.SetHealth(Mathf.FloorToInt(maxHealth * healthMultiplier));
             healthFillBar.SetFillvalue(1);
             healthScript.OnHealthRatioChangeEvent.AddListener(healthFillBar.SetFillvalue);
             isAlive = true;
-        }
-
-        public void SetBaseArena(BaseArena baseArena)
-        {
-            _baseArena = baseArena;
         }
 
         public override void Damage(ProjectileData projectileData)

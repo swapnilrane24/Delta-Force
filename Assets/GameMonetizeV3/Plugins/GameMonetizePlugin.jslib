@@ -1,7 +1,7 @@
-﻿var functions = {
+var functions = {
 	InitApi: function(gameKey) {
 	
-	gameKey = Pointer_stringify(gameKey);
+	gameKey = UTF8ToString(gameKey);
 	
 	 window["SDK_OPTIONS"] = {
         "gameId": gameKey, // Your gameId which is unique for each one of your games; can be found at your GameMonetize.com account.
