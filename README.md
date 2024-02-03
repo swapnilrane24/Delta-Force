@@ -3,6 +3,8 @@
 
 Its a simple topdown shooter 4v4 PVE game, team which score max kill in 5min of gameplay wins.
 
+GamePlay Link: https://lagged.com/en/g/blast-guns
+
 Tech Used:
 - Object Pooling
 - AI System
